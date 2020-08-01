@@ -2,14 +2,39 @@ import uuid
 
 import django
 from django.db import models
+from django.db.models.query import QuerySet
 from django.utils import timezone
 
 # Ensure django is setup before calling models
 django.setup()
 
 
+class BaseQueryset(QuerySet):
+    """
+    define custom queryset methods that can be chained for desired effect
+    """
+
+    def not_deleted(self) -> QuerySet:
+        """
+        :return:  A filtered queryset where the is_deleted flag is False
+        """
+        return self.filter(is_deleted=False)
+
+
+class BaseManager(models.Manager):
+    """
+    override the get_queryset functions to return our custom queryset.
+    """
+
+    def get_queryset(self) -> BaseQueryset:
+        """
+        :return: custom queryset BaseQueryset
+        """
+        return BaseQueryset(self.model)
+
 class BaseModel(models.Model):
 
+    objects = BaseManager()
 
     indexing_id = models.AutoField(primary_key=True)
 
