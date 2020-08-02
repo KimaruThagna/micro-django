@@ -1,0 +1,14 @@
+type SingleObjectPayload {
+    status: Boolean!
+    error: String
+    object: Object
+}
+
+
+type MultipleObjectsPayload {
+    status: Boolean!
+    error: String
+    objects: [Object]
+    objectsInCurrentPage: Int
+    objectsInAllPages: Int
+}

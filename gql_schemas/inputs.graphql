@@ -1,0 +1,26 @@
+input doctorCreationInput {
+    firstName: String!
+    lastName: String!
+    licenseNumber: String!
+    specialization: String!
+    county: String!
+}
+
+input doctorUpdateInput {
+    firstName: String!
+    lastName: String!
+    licenseNumber: String!
+    specialization: String!
+    county: String!
+}
+
+input doctorFilterInput {
+    lastName__contains: String!
+    licenseNumber: String!
+    specialization__contains: String!
+    county__contains: String!
+    is_deleted: Boolean!
+    is_active: Boolean!
+    createdAt__lte: DateTime!
+    createdAt__gte: DateTime!
+}
