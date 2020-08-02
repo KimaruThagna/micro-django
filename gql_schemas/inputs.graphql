@@ -19,8 +19,10 @@ input doctorFilterInput {
     licenseNumber: String!
     specialization__contains: String!
     county__contains: String!
-    is_deleted: Boolean!
-    is_active: Boolean!
+    isDeleted: Boolean!
+    isActive: Boolean!
     createdAt__lte: DateTime!
     createdAt__gte: DateTime!
 }
+
+input paginationInput {first: Int after: String last: Int before: String}

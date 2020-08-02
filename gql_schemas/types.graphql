@@ -1,0 +1,16 @@
+scalar DateTime
+
+union Objects = Doctor
+type Doctor
+{
+    uid: ID!
+    firstName: String!
+    lastName: String!
+    licenseNumber: String!
+    specialization: String!
+    county: String!
+    createdAt: DateTime
+    isDeleted: Boolean
+    deletedAt: DateTime
+
+}

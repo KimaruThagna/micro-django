@@ -1,0 +1,9 @@
+type Mutation {
+
+    createDoctor(creationInput: doctorCreationInput!): SingleObjectPayload!
+    updateDoctor(updateInput: doctorUpdateInput!): SingleObjectPayload!
+    deleteDoctor(uid:ID!): StatusPayload!
+    activateDoctor(uid:ID!): StatusPayload!
+    deactivateDoctor(uid:ID!): StatusPayload!
+
+}
