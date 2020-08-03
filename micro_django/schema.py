@@ -16,3 +16,24 @@ def bind_query_type_to_resolvers():
     query.set_field("doctor", DoctorsQueries.get_doctor)
     query.set_field("doctors", DoctorsQueries.get_doctors)
     return query
+
+def bind_mutation_type_to_resolvers():
+    mutation = MutationType()
+    mutation.set_field("createDoctor", DoctorsMutations.create)
+    mutation.set_field("updateDoctor", DoctorsMutations.update)
+    mutation.set_field("deleteDoctor", DoctorsMutations.soft_delete)
+    mutation.set_field("activateDoctor", DoctorsMutations.activate)
+    mutation.set_field("deactivateDoctor", DoctorsMutations.deactivate)
+
+
+# generate federated schema from type definitions, query, mutations and other objects
+def generate_schema():
+    type_defs = load_typedef_from_schema()
+    query = bind_query_type_to_resolvers()
+    mutation = bind_mutation_type_to_resolvers()
+    schema = make_executable_schema(type_defs, [query, mutation])
+    return schema
+
+
+# expose schema for imports from other modules
+schema = generate_schema()

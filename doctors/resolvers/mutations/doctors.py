@@ -56,3 +56,39 @@ class DoctorsMutations:
                 status=False,
                 error=f'An error occurred: {e}'
             )
+
+    @staticmethod
+    @convert_kwargs_to_snake_case
+    def activate(_, info, uid):
+
+        try:
+            with transaction.atomic():
+                record = Doctor.objects.get(uid=uid)
+                record.activate()
+                return dict(
+                    status=True,
+                    object=record
+                )
+        except Exception as e:
+            return dict(
+                status=False,
+                error=f'An error occurred: {e}'
+            )
+
+    @staticmethod
+    @convert_kwargs_to_snake_case
+    def deactivate(_, info, uid):
+
+        try:
+            with transaction.atomic():
+                record = Doctor.objects.get(uid=uid)
+                record.deactivate()
+                return dict(
+                    status=True,
+                    object=record
+                )
+        except Exception as e:
+            return dict(
+                status=False,
+                error=f'An error occurred: {e}'
+            )
