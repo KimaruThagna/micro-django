@@ -1,5 +1,3 @@
-from typing import Dict
-
 from ariadne import convert_kwargs_to_snake_case
 from doctors.models import Doctor
 from django.db import transaction
@@ -21,7 +19,7 @@ class DoctorsMutations:
 
                 return dict(
                 status=True,
-                object=Doctor.objects.create(create_input)
+                object=Doctor.objects.create(**create_input)
                 )
         except Exception as e:
             return dict(status=False, error=f'An error occurred {e}')
@@ -35,7 +33,7 @@ class DoctorsMutations:
 
                 return dict(
                     status=True,
-                    object=Doctor.objects.update(update_input)
+                    object=Doctor.objects.update(**update_input)
                 )
         except Exception as e:
             return dict(status=False, error=f'An error occurred {e}')
@@ -43,18 +41,18 @@ class DoctorsMutations:
 
     @staticmethod
     @convert_kwargs_to_snake_case
-    def soft_delete(_, info, uid, deleted_by = None):
-        if deleted_by:
-            try:
-                with transaction.atomic():
-                    record = Doctor.objects.get(uid=uid)
-                    record.soft_delete(deleted_by)
-                    return dict(
-                        status=True,
-                        object=record
-                    )
-            except Exception as e:
+    def soft_delete(_, info, uid):
+
+        try:
+            with transaction.atomic():
+                record = Doctor.objects.get(uid=uid)
+                record.soft_delete()
                 return dict(
-                    status=False,
-                    error=f'An error occurred: {e}'
+                    status=True,
+                    object=record
                 )
+        except Exception as e:
+            return dict(
+                status=False,
+                error=f'An error occurred: {e}'
+            )
