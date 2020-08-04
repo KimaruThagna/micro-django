@@ -3,13 +3,18 @@ version: '3.7'
 services:
   web:
     build: . #build the image for the web service from the dockerfile in parent directory
-    command: python manage.py runserver 0.0.0.0:${APP_PORT}
+    command: sh -c "python manage.py makemigrations &&
+                    python manage.py migrate &&
+                    python manage.py initiate_admin &&
+                    python postgres_prefill/populate_db.py &&
+                    python manage.py runserver 0.0.0.0:${APP_PORT}"
     volumes:
       - .:/microservice:rw # map data and files from parent directory in host to microservice directory in docker containe
     env_file:
       - .env
     ports:
       - 8000:${APP_PORT}
+    restart: "on-failure"
     depends_on:
       - db
   db:
@@ -20,6 +25,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+    restart: "always"
 
 volumes:
   postgres_data:
