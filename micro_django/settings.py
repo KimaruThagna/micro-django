@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'micro_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': os.environ.get('ENGINE'),
         'NAME': os.environ.get('DB_NAME', 'doctors'),
         'USER': os.environ.get('POSTGRES_USER', 'testuser'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'testpassword'),
