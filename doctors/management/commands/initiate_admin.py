@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 import os
+from django.conf import settings
 from dotenv import load_dotenv
-load_dotenv()
+env_path = os.path.join(settings.BASE_DIR, ".env")
+load_dotenv(dotenv_path=env_path)
 
 
 class Command(BaseCommand):

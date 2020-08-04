@@ -27,9 +27,9 @@ load_dotenv(dotenv_path=env_path)
 SECRET_KEY = os.environ.get('SECRET KEY','3_8sxdzx343#k+w-2n*ypt^#p-vh%6$g%tp!(hr4d+n1f#yzmk')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get('DEBUG'))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
 
 # Application definition
