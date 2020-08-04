@@ -11,16 +11,20 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from os.path import dirname, join
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+env_path = join(BASE_DIR, ".env")
+load_dotenv(dotenv_path=env_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3_8sxdzx343#k+w-2n*ypt^#p-vh%6$g%tp!(hr4d+n1f#yzmk'
+SECRET_KEY = os.environ.get('SECRET KEY','3_8sxdzx343#k+w-2n*ypt^#p-vh%6$g%tp!(hr4d+n1f#yzmk')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,9 +83,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME', 'doctors'),
-        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres123'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'USER': os.environ.get('POSTGRES_USER', 'testuser'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'testpassword'),
+        'HOST': os.environ.get('DB_HOST', 'db'),
         'PORT': os.environ.get('DB_PORT', '5434'),
     }
 }
