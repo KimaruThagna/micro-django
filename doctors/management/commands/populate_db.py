@@ -1,6 +1,9 @@
 import pandas as pd
+from doctors.models import *
+from django.conf import settings
+from os.path import join
 
-from doctors.models import Doctor
+from django.core.management.base import BaseCommand
 
 def prefill_doctors(filename):
     data = pd.read_csv(filename)
@@ -13,4 +16,8 @@ def prefill_doctors(filename):
     except Exception as e:
         print(f"DB prefill process failed due to {e}")
 
-prefill_doctors('doctor_list.csv')
+
+class Command(BaseCommand):
+
+    def handle(self, *args, **options):
+        prefill_doctors(join(settings.BASE_DIR,'postgres_prefill/doctor_list.csv'))

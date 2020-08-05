@@ -6,19 +6,19 @@ services:
     command: sh -c "python manage.py makemigrations &&
                     python manage.py migrate &&
                     python manage.py initiate_admin &&
-                    python postgres_prefill/populate_db.py &&
+                    python manage.py populate_db &&
                     python manage.py runserver 0.0.0.0:${APP_PORT}"
     volumes:
       - .:/microservice:rw # map data and files from parent directory in host to microservice directory in docker containe
     env_file:
       - .env
     ports:
-      - 8000:${APP_PORT}
+      - ${APP_PORT}:${APP_PORT}
     restart: "on-failure"
     depends_on:
       - db
   db:
-    image: postgres:12.0-alpine
+    image: postgres:11-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:

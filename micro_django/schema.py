@@ -24,6 +24,7 @@ def bind_mutation_type_to_resolvers():
     mutation.set_field("deleteDoctor", DoctorsMutations.soft_delete)
     mutation.set_field("activateDoctor", DoctorsMutations.activate)
     mutation.set_field("deactivateDoctor", DoctorsMutations.deactivate)
+    return mutation
 
 
 # generate federated schema from type definitions, query, mutations and other objects

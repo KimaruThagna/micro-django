@@ -5,9 +5,6 @@ from django.db import models
 from django.db.models.query import QuerySet
 from django.utils import timezone
 
-# Ensure django is setup before calling models
-django.setup()
-
 
 class BaseQueryset(QuerySet):
     """
@@ -57,7 +54,9 @@ class BaseModel(models.Model):
 
     def activate(self):
         self.is_active = True
+        self.save()
 
     def deactivate(self):
         self.is_active = False
+        self.save()
 
