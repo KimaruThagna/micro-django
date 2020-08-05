@@ -4,3 +4,4 @@ Django==2.2.3
 psycopg2-binary==2.8.5
 graphql-core==3.0.5
 python-dotenv==0.13.0
+gunicorn==20.0.4

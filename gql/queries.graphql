@@ -2,9 +2,6 @@
 type Query {
 
     doctor(uid: String): SingleObjectPayload!
-    doctors(
-        paginationInput: paginationInput = null
-        filter: doctorFilterInput = null
-    ): MultipleObjectsPayload!
+    doctors: MultipleObjectsPayload!
 
 }

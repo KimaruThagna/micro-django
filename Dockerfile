@@ -22,5 +22,5 @@ RUN pip install --upgrade pip
 # copy project
 COPY . /microservice
 RUN pip install -r requirements.txt
-CMD ["/bin/bash", "./entrypoint.sh"]
+CMD ["/bin/bash", "entrypoint.sh"]
 #ENTRYPOINT["entrypoint.sh"] alternative to CMD bin/bash

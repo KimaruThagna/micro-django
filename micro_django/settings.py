@@ -90,8 +90,8 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'doctors'),
         'USER': os.environ.get('POSTGRES_USER', 'testuser'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'testpassword'),
-        'HOST': os.environ.get('DB_HOST', 'db'),
-        'PORT': os.environ.get('DB_PORT', '5434'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 

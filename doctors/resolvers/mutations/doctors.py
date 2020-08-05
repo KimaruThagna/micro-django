@@ -11,36 +11,36 @@ class DoctorsMutations:
         pass
 
     @staticmethod
-    @convert_kwargs_to_snake_case
-    def create(_, info, create_input):
+    def create(_, info, creation_input):
 
         try:
             with transaction.atomic():
 
                 return dict(
                 status=True,
-                object=Doctor.objects.create(**create_input)
+                object=Doctor.objects.create(**creation_input)
                 )
         except Exception as e:
             return dict(status=False, error=f'An error occurred {e}')
 
     @staticmethod
-    @convert_kwargs_to_snake_case
+
     def update(_, info, update_input):
 
         try:
             with transaction.atomic():
-
+                doctor = Doctor.objects.get(uid=update_input.get("uid"))
+                Doctor.objects.filter(uid=update_input.pop("uid")).update(**update_input)
                 return dict(
                     status=True,
-                    object=Doctor.objects.update(**update_input)
+                    object=doctor
                 )
         except Exception as e:
             return dict(status=False, error=f'An error occurred {e}')
 
 
     @staticmethod
-    @convert_kwargs_to_snake_case
+
     def soft_delete(_, info, uid):
 
         try:

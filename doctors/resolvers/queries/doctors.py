@@ -33,11 +33,10 @@ class DoctorsQueries:
 
     @staticmethod
     @convert_kwargs_to_snake_case
-    def get_doctors(_, info, pagination_input,filter_input):
+    def get_doctors(_, info):
 
         try:
-            return paginate (DoctorsQueries.filter(
-                Doctor.objects.all().not_deleted(), filter_input=filter_input),
-                            pagination_input=pagination_input)
+            return dict(status=True, object=Doctor.objects.all().not_deleted())
+
         except Exception as e:
             return dict(status=False, error=f"An error as occurred {e}")

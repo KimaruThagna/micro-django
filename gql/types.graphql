@@ -1,16 +1,17 @@
 scalar DateTime
 
-union Objects = Doctor
+
 type Doctor
 {
     uid: ID!
-    firstName: String!
-    lastName: String!
-    licenseNumber: String!
+    first_name: String!
+    last_name: String!
+    license_number: String!
     specialization: String!
     county: String!
-    createdAt: DateTime
-    isDeleted: Boolean
-    deletedAt: DateTime
+    created_at: DateTime
+    is_deleted: Boolean!
+    is_active: Boolean!
+    deleted_at: DateTime
 
 }
