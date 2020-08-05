@@ -6,12 +6,13 @@ services:
     command: sh -c "python manage.py makemigrations &&
                     python manage.py migrate &&
                     python manage.py initiate_admin &&
-                    python manage.py populate_db &&
+                    python manage.py manage.py populate_db &&
                     python manage.py runserver 0.0.0.0:${APP_PORT}"
     volumes:
       - .:/microservice:rw # map data and files from parent directory in host to microservice directory in docker containe
     env_file:
       - .env
+    image: doctors_microservice
     ports:
       - ${APP_PORT}:${APP_PORT}
     restart: "on-failure"
