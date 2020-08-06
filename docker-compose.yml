@@ -5,6 +5,8 @@ services:
     build: ./nginx
     ports:
       - 1337:80
+    volumes:
+      - static_volume:/home/app/microservice/static
     depends_on:
       - web
   web:
@@ -13,14 +15,17 @@ services:
                     python manage.py migrate &&
                     python manage.py initiate_admin &&
                     python manage.py populate_db &&
+                    python manage.py collectstatic &&
                     gunicorn micro_django.wsgi:application --bind 0.0.0.0:${APP_PORT}"
     volumes:
       - .:/microservice:rw # map data and files from parent directory in host to microservice directory in docker containe
+      - static_volume:/home/app/microservice/static
     env_file:
       - .env
     image: doctors_microservice
-    ports:
-      - ${APP_PORT}:${APP_PORT}
+
+    expose:
+      - ${APP_PORT}
     restart: "on-failure"
     depends_on:
       - db

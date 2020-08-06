@@ -8,6 +8,7 @@ RUN addgroup -S $APP_USER && adduser -S $APP_USER -G $APP_USER
 
 
 RUN mkdir $MICRO_SERVICE
+RUN mkdir $MICRO_SERVICE/static
 
 # where our code lives
 WORKDIR $MICRO_SERVICE
