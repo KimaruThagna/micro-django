@@ -1,6 +1,12 @@
 version: '3.7'
 
 services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
   web:
     build: . #build the image for the web service from the dockerfile in parent directory
     command: sh -c "python manage.py makemigrations &&
