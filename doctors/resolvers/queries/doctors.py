@@ -36,10 +36,14 @@ class DoctorsQueries:
     def get_doctors(_, info, filter_input: Optional[Dict[Any, Any]] = None):
 
         try:
-            return dict(status=True,
+            if filter_input is not None:
+                return dict(status=True,
                         object= DoctorsQueries.filter(
                             Doctor.objects.all().not_deleted(),
                             filter_input=filter_input))
+            else:
+                return dict(status=True,
+                            object=Doctor.objects.all().not_deleted())
 
 
         except Exception as e:

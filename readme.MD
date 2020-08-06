@@ -3,7 +3,10 @@
 ## Tech stack
 
 ## Future plans
-
+https://ariadnegraphql.org/docs/apollo-federation
+https://docs.docker.com/get-docker/
+https://docs.docker.com/compose/
+https://ariadnegraphql.org/
 ## Docker Image 
 
 ## Installation and running
