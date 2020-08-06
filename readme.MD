@@ -1,13 +1,22 @@
 ## Micro Django
-
+A journey through building a django-graphql based micro service.
+The repo also explores using [ariadne](https://ariadnegraphql.org/) to build a federated schema.
+This is part of a micro service architecture where this handles the doctors service. Other services in this project are the `Patients` and `diagnosis` services.
 ## Tech stack
+1. Django for backend and business logic
+2. [Ariadne](https://ariadnegraphql.org/) to resolve python/django objects to graphql API
+3. [Docker](https://docs.docker.com/get-docker/) and
+ [Docker compose](https://docs.docker.com/compose/) for container management and deployment.
+ 
+## Overall Architecture.
+**Micro-django** is modelled as a doctors service app. The whole architecture involves 3 micro services
+1. [Doctors service]()
+2. [Patient's service]()
+3. [Diagnosis service]()
 
-## Future plans
-https://ariadnegraphql.org/docs/apollo-federation
-https://docs.docker.com/get-docker/
-https://docs.docker.com/compose/
-https://ariadnegraphql.org/
-## Docker Image 
+and a final service running [apollo federation](https://www.apollographql.com/docs/apollo-server/federation/introduction/) that allows a client to access all 3 services
+via a single data graph by implementing a [gateway](https://www.apollographql.com/docs/apollo-server/federation/gateway/).
+The gateway service repo can be found [here]()
 
 ## Installation and running
 A pre requisite to install and run this service is 
