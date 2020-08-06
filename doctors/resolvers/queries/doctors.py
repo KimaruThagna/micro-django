@@ -33,10 +33,14 @@ class DoctorsQueries:
 
     @staticmethod
     @convert_kwargs_to_snake_case
-    def get_doctors(_, info):
+    def get_doctors(_, info, filter_input: Optional[Dict[Any, Any]] = None):
 
         try:
-            return dict(status=True, object=Doctor.objects.all().not_deleted())
+            return dict(status=True,
+                        object= DoctorsQueries.filter(
+                            Doctor.objects.all().not_deleted(),
+                            filter_input=filter_input))
+
 
         except Exception as e:
             return dict(status=False, error=f"An error as occurred {e}")
