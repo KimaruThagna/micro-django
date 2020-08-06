@@ -10,13 +10,13 @@ This is part of a micro service architecture where this handles the doctors serv
  
 ## Overall Architecture.
 **Micro-django** is modelled as a doctors service app. The whole architecture involves 3 micro services
-1. [Doctors service]()
-2. [Patient's service]()
-3. [Diagnosis service]()
+1. [Doctors service](https://github.com/KimaruThagna/micro-django)
+2. [Patient's service](https://github.com/KimaruThagna/patient-microservice)
+3. [Diagnosis service](https://github.com/KimaruThagna/diagnosis-microservice)
 
 and a final service running [apollo federation](https://www.apollographql.com/docs/apollo-server/federation/introduction/) that allows a client to access all 3 services
 via a single data graph by implementing a [gateway](https://www.apollographql.com/docs/apollo-server/federation/gateway/).
-The gateway service repo can be found [here]()
+The gateway service repo can be found [here](https://github.com/KimaruThagna/hospital-federated)
 
 ## Installation and running
 A pre requisite to install and run this service is 
