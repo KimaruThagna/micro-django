@@ -9,6 +9,7 @@ services:
       - static_volume:/home/app/microservice/static
     depends_on:
       - web
+    restart: "on-failure"
   web:
     build: . #build the image for the web service from the dockerfile in parent directory
     command: sh -c "python manage.py makemigrations &&

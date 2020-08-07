@@ -3,10 +3,12 @@ A journey through building a django-graphql based micro service.
 The repo also explores using [ariadne](https://ariadnegraphql.org/) to build a federated schema.
 This is part of a micro service architecture where this handles the doctors service. Other services in this project are the `Patients` and `diagnosis` services.
 ## Tech stack
-1. Django for backend and business logic
+1. [Django](https://www.djangoproject.com/) for backend and business logic
 2. [Ariadne](https://ariadnegraphql.org/) to resolve python/django objects to graphql API
 3. [Docker](https://docs.docker.com/get-docker/) and
  [Docker compose](https://docs.docker.com/compose/) for container management and deployment.
+4. [Gunicorn](https://gunicorn.org/) To serve Django in a production state
+5. [Nginx](https://www.nginx.com/) To act as a reverse proxy for Gunicorn.
  
 ## Overall Architecture.
 **Micro-django** is modelled as a doctors service app. The whole architecture involves 3 micro services
@@ -27,4 +29,8 @@ To spin up the service, run the command
 ```apex
 docker-compose up
 ```
-To access the service via the broswer, log on to [http://0.0.0.0:8000/]()
+To access the service via the broswer, log on to [http://0.0.0.0:1337/]() since we are serving the app via NGINX
+
+## Sample Query
+
+## Sample mutation
