@@ -2,6 +2,7 @@
 A journey through building a django-graphql based micro service.
 The repo also explores using [ariadne](https://ariadnegraphql.org/) to build a federated schema.
 This is part of a micro service architecture where this handles the doctors service. Other services in this project are the `Patients` and `diagnosis` services.
+ 
 ## Tech stack
 1. [Django](https://www.djangoproject.com/) for backend and business logic
 2. [Ariadne](https://ariadnegraphql.org/) to resolve python/django objects to graphql API
@@ -23,8 +24,10 @@ The gateway service repo can be found [here](https://github.com/KimaruThagna/hos
 ## Installation and running
 A pre requisite to install and run this service is 
 having [docker]() and [docker compose]() installed
-Once installed, clone this repo into your local machine and navigate to the
-position of the `docker-compose.yml` file
+Once installed, clone this repo into your local machine  and copy the contents of `example.env` into your own `.env` file. 
+Change the variables as need be
+
+Navigate to the position of the `docker-compose.yml` file
 To spin up the service, run the command
 ```apex
 docker-compose up
@@ -68,8 +71,26 @@ To access the service via the broswer, log on to [http://0.0.0.0:1337/]() since 
 ## Sample mutation
 - ``create_doctor``
 
+
 -   `update_doctor`
 
 - `delete_doctor`
-
+```
+mutation
+{
+  deleteDoctor(uid:"f3dc4b5e-000-4b88-82a9-345eed624511")
+  {
+    status
+  }
+}
+```
 - `activate_doctor`
+```
+mutation
+{
+  activateDoctor(uid:"f3dc4b5e-111-d455-82a9-345eed624511")
+  {
+    status
+  }
+}
+```
