@@ -32,5 +32,44 @@ docker-compose up
 To access the service via the broswer, log on to [http://0.0.0.0:1337/]() since we are serving the app via NGINX
 
 ## Sample Query
+- `get_doctors`
+```
+{
+  doctors
+  {
+    status
+    object{
+      license_number
+      first_name
+      uid
+      last_name
+      county
+      specialization
+    }
+  }
+}
+```
+- `get_doctor`  use whichever uid will be amongst those retrieved in the first query.
+```
+{
+  doctor(uid:"f6fea0be-20ff-4c12-b0cb-fb32d5512346")
+  {
+    status
+    object
+    {
+      first_name
+      last_name
+      specialization
+    }
+  }
+}
+```
 
 ## Sample mutation
+- ``create_doctor``
+
+-   `update_doctor`
+
+- `delete_doctor`
+
+- `activate_doctor`
