@@ -34,6 +34,8 @@ docker-compose up
 ```
 To access the service via the broswer, log on to [http://0.0.0.0:1337/]() since we are serving the app via NGINX
 
+To view the app from the admin side, access the admin via the url [http://0.0.0.0:1337/admin]() and log in with the superuser credentials created in the `.env` file
+
 ## Sample Query
 - `get_doctors`
 ```
@@ -70,9 +72,49 @@ To access the service via the broswer, log on to [http://0.0.0.0:1337/]() since 
 
 ## Sample mutation
 - ``create_doctor``
+```
+mutation
+{
+createDoctor{
+first_name:"John"
+last_name:"Doe"
+specialization:"cardiologist"
+county:"Nandi"
+license_number:"001265789" 
+}
+status
+object
+{
+uid
+last_name
+first_name
+specialization
+}
+}
 
+
+```
 
 -   `update_doctor`
+
+```
+mutation
+{
+updateDoctor{
+specialization:"cardiologist"
+county:"Lamu"
+}
+status
+object
+{
+uid
+last_name
+county
+specialization
+}
+}
+
+```
 
 - `delete_doctor`
 ```
