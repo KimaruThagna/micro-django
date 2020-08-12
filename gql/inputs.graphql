@@ -17,6 +17,7 @@ input doctorUpdateInput {
 
 input doctorFilterInput {
     last_name__contains: String
+    first_name__contains: String
     license_number: String
     specialization__contains: String
     county__contains: String
