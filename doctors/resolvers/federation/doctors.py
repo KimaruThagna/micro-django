@@ -7,7 +7,7 @@ doctor_federated_object = FederatedObjectType("Doctor")
 
 @doctor_federated_object.resolve_reference
 def get_doctor_by_uid(representation):
-    return Doctor.objects.get(uid=representation.get("uid"))
+    return Doctor.objects.get(license_number=representation.get("license_number"))
 
 
 @doctor_federated_object.field("uid")
