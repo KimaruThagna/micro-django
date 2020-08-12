@@ -1,7 +1,7 @@
 scalar DateTime
 
 
-type Doctor
+type Doctor @key(fields: "uid")
 {
     uid: ID!
     first_name: String!
