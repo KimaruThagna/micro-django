@@ -1,6 +1,6 @@
 ariadne==0.11.0
 pandas
-Django==2.2.13
+Django==2.2.21
 psycopg2-binary==2.8.5
 graphql-core==3.0.5
 python-dotenv==0.13.0
